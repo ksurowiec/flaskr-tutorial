@@ -61,7 +61,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('hello'))
+            return redirect(url_for('index'))
 
         flash(error)
 
@@ -71,12 +71,12 @@ def login():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index '))
+    return redirect(url_for('index'))
 
 
 @bp.before_app_request
 def load_logged_in_user():
-    user_id = session.get('session_id')
+    user_id = session.get('user_id')
 
     if user_id is None:
         g.user = None
